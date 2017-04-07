@@ -222,7 +222,7 @@ SLL.prototype.move_max_back = function(){
   prev.next = max.next;
   current.next = max;
   max.next = null;
-  this.tal = max;
+  this.tail = max;
   return this;
 }
 
@@ -401,10 +401,19 @@ SLL.prototype.shiftRight = function(shift){
 }
 
 SLL.prototype.Kth_last_node = function(k){
-  if (!this.head || !this.head.next){
+  if (!this.head){
+    return null;
+  }
+  if (!this.head.next){
     return this;
   }
-
+  var count = 0;
+  var current = this.head;
+  while (count < this.length - k){
+    current = current.next;
+    count++;
+  }
+  return current;
 }
 
 SLL.prototype.print = function(){
@@ -422,8 +431,8 @@ SLL.prototype.print = function(){
 }
 
 var sll = new SLL();
-sll.add(1);
-sll.Kth_last_node(1).print();
+sll.add(1).add(2).add(3).add(4).add(5);
+console.log(sll.Kth_last_node(3));
 // sll.shiftRight(12).print();
 // sll.shift_right_one().print();
 // sll.shiftRight(9);
