@@ -96,10 +96,79 @@ function moveMin(arr){
   // console.log("The index is", arr[index], arr);
 }
 
+function reverse(arr){
+  if (arr.length < 1){
+    return null;
+  }
+  if (arr.length < 2){
+    return arr;
+  }
+  for (var i = 0; i < Math.floor(arr.length/2); i++){
+    var tmp = arr[i];
+    arr[i] = arr[arr.length - 1 - i];
+    arr[arr.length - 1 - i] = tmp;
+    // console.log(arr);
+  }
+  return arr;
+}
+
+function concat(arr1, arr2){
+  if (arr1.length < 1 && arr2.length < 1){
+    // when both arrays are empty
+    return arr1;
+  }
+  // when either array is empty, return the other array
+  if (arr1.length < 1){
+    return arr2;
+  }
+  if (arr2.length < 1){
+    return arr1;
+  }
+  for (var i = 0; i < arr2.length; i++){
+    arr1.push(arr2[i]);
+    console.log(arr1);
+  }
+  return arr1;
+}
+
+function secondToLast(arr){
+  if (arr.length < 2){
+    return null;
+  }
+  return arr[arr.length-2];
+}
+
+function secondLargestVal(arr){
+  if (arr.length < 2){
+    // can't have second largest if there is only one element
+    return null;
+  }
+  var max = arr[0];
+  for (var i = 1; i < arr.length; i++){
+    if (arr[i] > max){
+      max = arr[i];
+      // console.log(max);
+    }
+  }
+  var secondMax = arr[0];
+  for (var i = 0; i < arr.length; i++){
+    // if (arr[i] < max && arr[i] > secondMax){
+    // if (arr[i] < max || arr[i] > secondMax){
+      secondMax = arr[i];
+      console.log(secondMax);
+    }
+  }
+  return secondMax;
+}
+
 // var arr = [];
-var arr = [1,2,2,2,3,3,4,5,5];
-// var arr = [1,1,1,1,1,1];
-console.log(removeDuplicates(arr));
+arr = [7, 1, 4, Math.PI, 42];
+// var arr = [42, true, "Liam", 7];
+console.log(secondLargestVal(arr));
+// console.log(secondToLast(arr));
+// console.log(concat(arr1, arr2))
+// console.log(reverse(arr));
+// console.log(removeDuplicates(arr));
 // console.log(removeAt(arr, 2));
 // console.log(popFront(arr));
 // console.log(insertAt(arr, 1, 4));
