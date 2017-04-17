@@ -1,4 +1,3 @@
-
 function pushFront(arr, val){
   if (arr.length < 1){
     arr.push(val);
@@ -138,33 +137,97 @@ function secondToLast(arr){
   return arr[arr.length-2];
 }
 
+function NthLast(arr, n){
+  if (arr.length < 1){
+    return null;
+  }
+  if (n < 1){
+    console.log("n needs to be greater than 0");
+    return false;
+  }
+  if (arr.length < n){
+    return null;
+  }
+  return arr[arr.length-n];
+}
+
 function secondLargestVal(arr){
   if (arr.length < 2){
     // can't have second largest if there is only one element
     return null;
   }
-  var max = arr[0];
+  var max = 0;
   for (var i = 1; i < arr.length; i++){
-    if (arr[i] > max){
-      max = arr[i];
+    if (arr[i] > arr[max]){
+      max = i;
       // console.log(max);
     }
   }
-  var secondMax = arr[0];
+  if (max == 0){
+    var secondMax = arr[1];
+  }
+  else{
+    var secondMax = arr[0];
+  }
+
   for (var i = 0; i < arr.length; i++){
-    // if (arr[i] < max && arr[i] > secondMax){
-    // if (arr[i] < max || arr[i] > secondMax){
+    if (arr[i] !== arr[max] && arr[i] > secondMax){
       secondMax = arr[i];
-      console.log(secondMax);
     }
   }
   return secondMax;
 }
 
+function rotate(arr, shiftBy){
+  if (arr.length < 2){
+    return arr;
+  }
+  var index = shiftBy % arr.length;
+  // console.log("Shifted index is", index);
+  for (var i = 0; i < index; i++){
+    shiftOne(arr);
+  }
+  return arr;
+}
+
+function shiftOne(arr){
+  if (arr.length < 2){
+    return arr;
+  }
+  var tmp = arr[0];
+  arr[0] = arr[arr.length - 1];
+  for (var i = arr.length - 1; i > 0; i--){
+    arr[i] = arr[i-1];
+  }
+  arr[1] = tmp;
+  return arr;
+}
+
+function filterRange(arr, min, max){
+  if (arr.length < 1){
+    return arr;
+  }
+  for (var i = 0; i < arr.length; i++){
+    for (var index = min; index < max+1; index++){
+      if (arr[i] == index){
+        for (var ind = i; ind < arr.length; ind++){
+          arr[i] = arr[i+1];
+          console.log(arr);
+        }
+        // arr.pop();
+      }
+    }
+  }
+  return arr;
+}
+
 // var arr = [];
-arr = [7, 1, 4, Math.PI, 42];
-// var arr = [42, true, "Liam", 7];
-console.log(secondLargestVal(arr));
+var arr = [5,2,3,6,4,9,7];
+console.log(NthLast(arr, 0));
+// console.log(secondLargestVal(arr));
+// console.log(filterRange(arr, 2,4));
+// console.log(shiftOne(arr));
+// console.log(rotate(arr, 5));
 // console.log(secondToLast(arr));
 // console.log(concat(arr1, arr2))
 // console.log(reverse(arr));
