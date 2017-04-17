@@ -1,45 +1,51 @@
 function NthLargestVal(arr, n){
-  if (arr.length < n){
+  if (arr.length < 2){
     return null;
   }
-  if (!max_arr){
-    max_arr = [];
+  if (n > arr.length){
+    return null;
   }
-  var max_index;
-  if (max_arr.length < 1){
-    max_index = 0;
+  var max = findMax(arr);
+  // max is the index
+
+  for (var i = 1; i < n; i++){
+    max = findOtherMax(arr, max);
   }
-  else{
-    // this sets the max index, the index that's not is max array
-    var i = 0;
-    while (i < arr.length){
-      for (var ind=0; ind < max_arr.length; ind++){
-        if (i == max_arr[ind]){
-          i++;
-          break;
-        }
-      }
-    }
-    max_index = i;
-    var j = 0;
-    while (j < arr.length){
-      for (var index = 0; index < max_arr.length; ind++){
-        if (j == max_arr[index]){
-          j++;
-          break;
-        }
-      }
-      if (arr[max_index] < arr[j]){
-        max_index = j;
-        j++;
-      }
-    }
-    max_arr.push(j);
-    if (max_arr.length < n){
-      NthLargestVal(arr, n);
-    }
-    else{
-      return arr[max_arr[max_arr.length-1]];
-    }
-  }
+  return arr[max];
 }
+
+
+function findMax(arr){
+  if (arr.length < 2){
+    return arr[0];
+  }
+  var max = 0;
+  for (var i = 1; i < arr.length; i++){
+    if (arr[max] < arr[i]){
+      max = i;
+    }
+  }
+  return max;
+}
+
+function findOtherMax(arr, max){
+
+  for (var i = 0; i < arr.length;i++){
+    if (arr[i] < arr[max]){
+      var new_max = i;
+      break;
+    }
+  }
+
+  for (var i = arr.length - 1; i > 0; i--){
+    if(arr[i] < arr[max] && arr[new_max] < arr[i]){
+      new_max = i;
+    }
+  }
+
+  return new_max;
+}
+
+var arr = [5,2,3,6,4,9,7];
+console.log(NthLargestVal(arr, 3));
+// console.log(findMax(arr));

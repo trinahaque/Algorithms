@@ -204,6 +204,7 @@ function shiftOne(arr){
 }
 
 function filterRange(arr, min, max){
+  // incomplete
   if (arr.length < 1){
     return arr;
   }
@@ -221,9 +222,27 @@ function filterRange(arr, min, max){
   return arr;
 }
 
+function fischer_yate_shuffle(arr){
+  if (arr.length < 1){
+    return null;
+  }
+  if (arr.length < 2){
+    return arr[0];
+  }
+  for (var i = arr.length - 1; i > 0; i--){
+    var random = Math.floor(Math.random()*(i-0+1))+0;
+    console.log(random);
+    var tmp = arr[i];
+    arr[i] = arr[random];
+    arr[random] = tmp;
+  }
+  return arr;
+}
+
 // var arr = [];
-var arr = [5,2,3,6,4,9,7];
-console.log(NthLast(arr, 0));
+var arr = [5,2];
+console.log(fischer_yate_shuffle(arr));
+// console.log(NthLast(arr, 0));
 // console.log(secondLargestVal(arr));
 // console.log(filterRange(arr, 2,4));
 // console.log(shiftOne(arr));
