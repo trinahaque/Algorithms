@@ -2,7 +2,7 @@ function NthLargestVal(arr, n){
   if (arr.length < 2){
     return null;
   }
-  if (n > arr.length){
+  if (n > arr.length || n < 1){
     return null;
   }
   var max = findMax(arr);

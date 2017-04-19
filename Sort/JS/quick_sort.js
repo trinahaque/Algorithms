@@ -1,7 +1,7 @@
 function partition(arr){
     var i = -1;
     var pivot = arr.length-1;
-    
+
     for (var j = 0; j < arr.length-1; j++){
         if (arr[j] < arr[pivot]){
             i = i+1;

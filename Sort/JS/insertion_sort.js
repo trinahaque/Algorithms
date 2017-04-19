@@ -1,4 +1,4 @@
-function insertion_sort(arr, val){
+function insertion_sort_khan(arr, val){
   if (arr.length==0){
     arr.push(val);
     return arr;
@@ -16,4 +16,4 @@ function insertion_sort(arr, val){
   arr[i+1] = key;
   return arr;
 }
-console.log(insertion_sort([1,3,5,7], 6))
+// console.log(insertion_sort_khan([1,3,5,7], 6))
