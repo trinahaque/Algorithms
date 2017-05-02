@@ -1,4 +1,4 @@
-function binary_recursive(arr, val, start, end){
+function binary_recursive_search(arr, val, start, end){
   if (arr.length < 1){
     return null;
   }
@@ -23,7 +23,7 @@ function binary_recursive(arr, val, start, end){
     return true;
   }
   // console.log("start", start, "end", end);
-  return binary_recursive(arr, val, start, end);
+  return binary_recursive_search(arr, val, start, end);
 }
 
-console.log(binary_recursive([1,2,3,4,5,6,7,8],4));
+console.log(binary_recursive_search([1,2,3,4,5,6,7,8],4));
