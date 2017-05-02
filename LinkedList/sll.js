@@ -416,6 +416,21 @@ SLL.prototype.Kth_last_node = function(k){
   return current;
 }
 
+SLL.prototype.recursive_length = function(){
+  if (!this.head){
+    return null;
+  }
+  return this.head.recursive_length();
+}
+
+SLNode.prototype.recursive_length = function(){
+  if (!this.next){
+    return 1;
+  }
+  return this.next.recursive_length() + 1;
+}
+
+
 SLL.prototype.print = function(){
   if (!this.head){
     console.log("SLL is empty");
@@ -431,8 +446,9 @@ SLL.prototype.print = function(){
 }
 
 var sll = new SLL();
-sll.add(1).add(2).add(3).add(4).add(5);
-console.log(sll.Kth_last_node(3));
+sll.add(1).add(2).add(3).add(4);
+console.log(sll.recursive_length());
+// console.log(sll.Kth_last_node(3));
 // sll.shiftRight(12).print();
 // sll.shift_right_one().print();
 // sll.shiftRight(9);

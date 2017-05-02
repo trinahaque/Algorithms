@@ -88,6 +88,7 @@ BSTNode.prototype.preOrder = function(){
 
 BST.prototype.inOrder = function(){
   // inOrder is Left, Root, Right
+  // sorted array
   if (!this.root){
     return null;
   }
@@ -95,15 +96,15 @@ BST.prototype.inOrder = function(){
 }
 
 BSTNode.prototype.inOrder = function(){
-  // not right
-  if (this){
-    if (this.left){
-      this.left.inOrder();
-      console.log(this.val);
-    }
-    if (this.right){
-      this.right.inOrder();
-    }
+  if (!this){
+    return;
+  }
+  if (this.left){
+    this.left.inOrder();
+  }
+  console.log(this.val);
+  if (this.right){
+    this.right.inOrder();
   }
 }
 
@@ -120,7 +121,7 @@ BST.prototype.isBinarySearchTree = function(){
 // inOrder, postOrder, breadthFirst, preOrder, isBalanced, leastCommonAncestor very popular, if tree is binary search tree
 
 var bst = new BST();
-bst.add(10).add(5).add(15).add(3).add(7).add(2).add(12).add(17);
+bst.add(10).add(5).add(15).add(2).add(6).add(2).add(11).add(17).add(21);
 // bst.add(1).add(2).add(3).add(4).add(5);
 // console.log(bst);
 console.log(bst.inOrder());
