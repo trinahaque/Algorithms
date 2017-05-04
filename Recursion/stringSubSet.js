@@ -15,8 +15,7 @@ function strSubSet(str, map, count) {
     strSubSet(left+right, map, count);
   }
   if (str.length == count){
-    console.log(count);
-    // how does this edge case work?
+    // if statement is only hit when the for loops are done
     return map;
   }
 }
