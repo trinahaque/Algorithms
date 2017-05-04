@@ -122,6 +122,19 @@ BSTNode.prototype.size = function(){
   return count+left+right;
 }
 
+BST.prototype.GCA = function(node1, node2){
+  // greatest common ancestor
+  // very popular interview question
+}
+
+BST.prototype.isBinarySearchTree = function(){
+  // have to keep track of both parent and the grand-parent
+  // end is when both left and right node are null
+  // false anytime it fails the test
+  // keep track of min and max, update it each time
+  // all left has to be less than max
+}
+
 bst = new BST();
 // bst.add(77).add(20);
 bst.add(77).add(20).add(80).add(78).add(85).add(7).add(30).add(35).add(81).add(2).add(3);
