@@ -18,8 +18,6 @@ function twoStringAnagram(str1, str2){
   }
   return true;
 }
-
-
 // console.log(twoStringAnagram("cat", "act"));
 
 
