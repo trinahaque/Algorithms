@@ -1,4 +1,5 @@
 // given a string, find all the permutations of it
+// string permutation is same as finding anagrams
 
 function permutation(suffix, prefix, result){
   if (!result){
