@@ -10,7 +10,9 @@ function permutation(suffix, prefix, result){
     // console.log(result);
   }
   for (var i = 0; i < suffix.length; i++){
-    permutation(suffix.slice(0,i)+suffix.slice(i+1), prefix+suffix[i], result);
+    var pre = prefix+suffix[i];
+    var suf = suffix.slice(0,i)+suffix.slice(i+1);
+    permutation(suf, pre, result);
   }
   return result;
 }
