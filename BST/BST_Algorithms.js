@@ -146,6 +146,55 @@ BSTNode.prototype.count = function(){
 }
 
 
+// depth/height/max height are the same problems
+BST.prototype.depth = function(){
+  if (!this.root){
+    return 0;
+  }
+  return this.root.depth();
+}
+
+BSTNode.prototype.depth = function(){
+  var left = 0;
+  var right = 0;
+  if (this.left){
+    left = this.left.depth();
+  }
+  if (this.right){
+    right = this.right.depth();
+  }
+  if (left > right){
+    return left + 1;
+  }
+  else{
+    return right + 1;
+  }
+}
+
+
+BST.prototype.minHeight = function(){
+  if (!this.root){
+    return 0;
+  }
+  return this.root.minHeight();
+}
+
+BSTNode.prototype.minHeight = function(){
+  var left = 0;
+  var right = 0;
+  if (this.left){
+    left = this.left.minHeight();
+  }
+  if (this.right){
+    right = this.right.minHeight();
+  }
+  if (left < right){
+    return left + 1;
+  }
+  else{
+    return right + 1;
+  }
+}
 
 BST.prototype.GCA = function(node1, node2){
   // greatest common ancestor
@@ -161,8 +210,10 @@ BST.prototype.isBinarySearchTree = function(){
 }
 
 bst = new BST();
-bst.add(77).add(20).add(80).add(78).add(85).add(7).add(30).add(35).add(81).add(2).add(3);
-console.log(bst.count());
+bst.add(10).add(7).add(15).add(3).add(6).add(4).add(2).add(12);
+console.log(bst.minHeight());
+console.log(bst.depth());
+// console.log(bst.count());
 // console.log(bst.size());
 // console.log(bst.contain(4));
 // console.log(bst.max());
