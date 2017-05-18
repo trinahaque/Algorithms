@@ -122,6 +122,31 @@ BSTNode.prototype.size = function(){
   return count+left+right;
 }
 
+
+
+// count gives total number of nodes in a BST
+BST.prototype.count = function(){
+  if (!this.root){
+    return 0;
+  }
+  return this.root.count();
+}
+
+
+BSTNode.prototype.count = function(){
+  var left = 0;
+  var right = 0;
+  if (this.left){
+    left = this.left.count();
+  }
+  if (this.right){
+    right = this.right.count();
+  }
+  return 1+left+right;
+}
+
+
+
 BST.prototype.GCA = function(node1, node2){
   // greatest common ancestor
   // very popular interview question
@@ -136,9 +161,9 @@ BST.prototype.isBinarySearchTree = function(){
 }
 
 bst = new BST();
-// bst.add(77).add(20);
 bst.add(77).add(20).add(80).add(78).add(85).add(7).add(30).add(35).add(81).add(2).add(3);
-console.log(bst.size());
+console.log(bst.count());
+// console.log(bst.size());
 // console.log(bst.contain(4));
 // console.log(bst.max());
 // console.log(bst.min());
