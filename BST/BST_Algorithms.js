@@ -196,6 +196,42 @@ BSTNode.prototype.minHeight = function(){
   }
 }
 
+BST.prototype.findNode = function(val){
+  if (!this.root){
+    return this;
+  }
+  var dict = {
+      found: false,
+      parent: null,
+      node: this.root
+  }
+  return this.root.findNode(val, dict);
+}
+
+
+BSTNode.prototype.findNode = function(val, dict){
+  if (this.val == val){
+    dict.found = true;
+    dict.node = this;
+    return dict;
+  }
+  if (this.val < val) {
+    if (this.right){
+      dict.parent = this;
+      dict.node = this.right;
+      this.right.findNode(val, dict);
+    }
+  }
+  if (this.val > val){
+    if (this.left){
+      dict.parent = this;
+      dict.node = this.left;
+      this.left.findNode(val, dict);
+    }
+  }
+  return dict;
+}
+
 BST.prototype.GCA = function(node1, node2){
   // greatest common ancestor
   // very popular interview question
@@ -210,9 +246,10 @@ BST.prototype.isBinarySearchTree = function(){
 }
 
 bst = new BST();
-bst.add(10).add(7).add(15).add(3).add(6).add(4).add(2).add(12);
-console.log(bst.minHeight());
-console.log(bst.depth());
+bst.add(40).add(20).add(60).add(10).add(5).add(30).add(25).add(35);
+console.log(bst.findNode(20));
+// console.log(bst.minHeight());
+// console.log(bst.depth());
 // console.log(bst.count());
 // console.log(bst.size());
 // console.log(bst.contain(4));
