@@ -232,6 +232,44 @@ BSTNode.prototype.findNode = function(val, dict){
   return dict;
 }
 
+BST.prototype.remove = function(val){
+  var dict = this.findNode(val);
+
+  if (dict.found){
+    if (dict.node.right){
+      var left = null;
+      if (dict.node.val < dict.parent.val){
+        dict.parent.left = dict.node.right;
+      }
+      else{
+        dict.parent.right = dict.node.right;
+      }
+      if (dict.node.right.left){
+        left = dict.node.right.leftMost();
+      }
+    }
+    // console.log("The parent node is", dict.parent);
+    // console.log("The left most node in remove is", left);
+    if (dict.node.left){
+      if (!left){
+        dict.right.left = dict.node.left;
+      }
+      else{
+        left.left = dict.node.left;
+      }
+    }
+  }
+  return this;
+}
+
+BSTNode.prototype.leftMost = function(){
+  if (this.left){
+    return this.left.leftMost();
+  }
+  return this;
+}
+
+
 BST.prototype.GCA = function(node1, node2){
   // greatest common ancestor
   // very popular interview question
@@ -246,12 +284,12 @@ BST.prototype.isBinarySearchTree = function(){
 }
 
 bst = new BST();
-bst.add(40).add(20).add(60).add(10).add(5).add(30).add(25).add(35);
-console.log(bst.findNode(20));
+bst.add(40).add(20).add(60).add(30).add(25).add(35);
+console.log(bst.remove(60));
+// console.log(bst.findNode(20));
 // console.log(bst.minHeight());
 // console.log(bst.depth());
 // console.log(bst.count());
-// console.log(bst.size());
 // console.log(bst.contain(4));
 // console.log(bst.max());
 // console.log(bst.min());

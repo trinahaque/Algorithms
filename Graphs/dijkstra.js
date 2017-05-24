@@ -1,3 +1,6 @@
+// See if there is a loop in the graph
+// check if the graph is connected
+
 function dijkstra(AdjMatrix, root){
   var visited_arr = [];
   var not_visited_arr = [];
