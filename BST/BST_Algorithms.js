@@ -203,7 +203,8 @@ BST.prototype.findNode = function(val){
   var dict = {
       found: false,
       parent: null,
-      node: this.root
+      node: this.root,
+      side: null
   }
   return this.root.findNode(val, dict);
 }
@@ -219,6 +220,7 @@ BSTNode.prototype.findNode = function(val, dict){
     if (this.right){
       dict.parent = this;
       dict.node = this.right;
+      dict.side = "left";
       this.right.findNode(val, dict);
     }
   }
@@ -226,16 +228,36 @@ BSTNode.prototype.findNode = function(val, dict){
     if (this.left){
       dict.parent = this;
       dict.node = this.left;
+      dict.side = "right";
       this.left.findNode(val, dict);
     }
   }
   return dict;
 }
 
+
+
+// Remove node
+// Both left and right children can be null
+// Both left and right children are not null. Then attach the parent to the right child
+// node only has left children
+// needs to remove the root node
+
+
+
 BST.prototype.remove = function(val){
+
   var dict = this.findNode(val);
 
   if (dict.found){
+    if (!dict.node.left && !dict.node.right){
+      if (dict.side="left"){
+        dict.parent.left = null;
+      }
+      else{
+        dict.parent.right = null;
+      }
+    }
     if (dict.node.right){
       var left = null;
       if (dict.node.val < dict.parent.val){
@@ -248,8 +270,7 @@ BST.prototype.remove = function(val){
         left = dict.node.right.leftMost();
       }
     }
-    // console.log("The parent node is", dict.parent);
-    // console.log("The left most node in remove is", left);
+
     if (dict.node.left){
       if (!left){
         dict.right.left = dict.node.left;
@@ -284,8 +305,9 @@ BST.prototype.isBinarySearchTree = function(){
 }
 
 bst = new BST();
-bst.add(40).add(20).add(60).add(30).add(25).add(35);
-console.log(bst.remove(60));
+bst.add(40).add(20).add(60).add(10).add(30).add(25).add(35);
+console.log(bst);
+// console.log(bst.remove(60));
 // console.log(bst.findNode(20));
 // console.log(bst.minHeight());
 // console.log(bst.depth());
