@@ -445,9 +445,28 @@ SLL.prototype.print = function(){
   }
 }
 
+SLL.prototype.print_reverse = function(){
+  if (!this.head){
+    console.log("SLL is empty");
+    return;
+  }
+  var arr = [];
+  var current = this.head;
+  while (current){
+    arr.push(current.val);
+    current = current.next;
+  }
+  for (var i = arr.length-1; i >= 0; i--){
+    console.log(arr[i]);
+  }
+}
+
+
+
 var sll = new SLL();
 sll.add(1).add(2).add(3).add(4);
-console.log(sll.recursive_length());
+sll.print_reverse();
+// console.log(sll.recursive_length());
 // console.log(sll.Kth_last_node(3));
 // sll.shiftRight(12).print();
 // sll.shift_right_one().print();
