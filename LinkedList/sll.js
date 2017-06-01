@@ -453,19 +453,33 @@ SLL.prototype.print_reverse = function(){
   var arr = [];
   var current = this.head;
   while (current){
-    arr.push(current.val);
+    arr.push(current);
     current = current.next;
   }
   for (var i = arr.length-1; i >= 0; i--){
-    console.log(arr[i]);
+    console.log(arr[i].val);
+  }
+}
+
+SLL.prototype.printRecursion = function(){
+  if (!this.head){
+    return null;
+  }
+  return this.head.printRecursion();
+}
+
+SLNode.prototype.printRecursion = function(){
+  console.log(this.val);
+  if (this.next){
+    return this.next.printRecursion();
   }
 }
 
 
-
 var sll = new SLL();
 sll.add(1).add(2).add(3).add(4);
-sll.print_reverse();
+sll.printRecursion();
+// sll.print_reverse();
 // console.log(sll.recursive_length());
 // console.log(sll.Kth_last_node(3));
 // sll.shiftRight(12).print();
