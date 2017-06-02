@@ -11,27 +11,23 @@ function printEventBackward(arr){
 // output: 0,-2,8,2,-2
 
 
-function rotateArr(arr, n){
+function rotateRight(arr, n){
   var r = n % arr.length;
 
-  var new_arr = [];
   for (var i = 0; i < r; i++){
-    new_arr.push(arr[i]);
-  }
-  // console.log(new_arr);
-  for (var i= 0; i <= r; i++){
-    arr[i] = arr[i+r];
-  }
-  // console.log("The array after the shift is", arr);
-  var j = 0;
-  var k = arr.length - r;
-  while (j < new_arr.length && k < arr.length){
-    console.log("hello");
-    arr[k] = new_arr[j];
-    k++;
-    j++;
+    var tmp = arr[i];
+    var j = i;
+    while (j < arr.length){
+      var d = (j+r)%arr.length;
+      if (d == i){
+        break;
+      }
+      arr[j] = arr[d];
+      j = d;
+    }
+    arr[j] = tmp;
   }
   return arr;
 }
 
-console.log(rotateArr([1,2,3,4,5,6],1));
+console.log(rotateRight([1,2,3,4,5,6],5));
