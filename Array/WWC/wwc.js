@@ -13,13 +13,23 @@ function printEventBackward(arr){
 
 function rotateArr(arr, n){
   var r = n % arr.length;
-  // console.log("r is", r);
-  for (var i = 0; i < Math.floor(arr.length/2); i++){
-    // it's not i < r
-    var tmp = arr[r+i];
-    arr[r+i] = arr[i];
-    arr[i] = tmp;
-    // console.log(arr);
+
+  var new_arr = [];
+  for (var i = 0; i < r; i++){
+    new_arr.push(arr[i]);
+  }
+  // console.log(new_arr);
+  for (var i= 0; i <= r; i++){
+    arr[i] = arr[i+r];
+  }
+  // console.log("The array after the shift is", arr);
+  var j = 0;
+  var k = arr.length - r;
+  while (j < new_arr.length && k < arr.length){
+    console.log("hello");
+    arr[k] = new_arr[j];
+    k++;
+    j++;
   }
   return arr;
 }
