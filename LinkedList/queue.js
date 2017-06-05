@@ -51,22 +51,7 @@ Queue.prototype.front = function(){
   return this.head.val;
 }
 
-Queue.prototype.contains = function(val){
-  if (!this.head){
-    return false;
-  }
-  if (this.tail.val == val){
-    return true;
-  }
-  var current = this.head;
-  while (current.next !== this.tail){
-    if (current.val == val){
-      return true;
-    }
-    current = current.next;
-  }
-  return false;
-}
+
 
 Queue.prototype.size = function(){
   if (!this.head){
@@ -111,16 +96,7 @@ Queue.prototype.isPalindrome = function(){
   return false;
 }
 
-Queue.prototype.print = function(){
-  if (!this.head){
-    console.log("It's empty");
-  }
-  var current = this.head;
-  while (current){
-    console.log(current);
-    current = current.next;
-  }
-}
+
 
 function Stack(){
   this.stack = [];

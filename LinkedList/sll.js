@@ -475,10 +475,26 @@ SLNode.prototype.printRecursion = function(){
   }
 }
 
+SLL.prototype.printReverseRecursion = function(){
+  if (!this.head){
+    return null;
+  }
+  return this.head.printReverseRecursion();
+}
 
-var sll = new SLL();
-sll.add(1).add(2).add(3).add(4);
-sll.printRecursion();
+SLNode.prototype.printReverseRecursion = function(){
+  if (!this.next){
+    console.log(this.val);
+    return;
+  }
+  this.next.printReverseRecursion();
+  console.log(this.val);
+}
+
+// var sll = new SLL();
+// sll.add(1).add(2).add(3).add(4);
+// console.log(sll.printReverseRecursion());
+// sll.printRecursion();
 // sll.print_reverse();
 // console.log(sll.recursive_length());
 // console.log(sll.Kth_last_node(3));
@@ -510,3 +526,5 @@ sll.printRecursion();
 // console.log(sll.contains(4));
 // console.log(sll.remove_front())
 // sll.print();
+
+module.exports = SLL
