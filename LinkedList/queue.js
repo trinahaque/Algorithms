@@ -1,3 +1,5 @@
+var Stack = require('../LinkedList/stack.js')
+
 function Queue(){
   this.head = null;
   this.tail = null;
@@ -52,6 +54,16 @@ Queue.prototype.front = function(){
 }
 
 
+Queue.prototype.print = function(){
+
+  var count = 0;
+  while (count < this.length){
+    var tmp = this.dequeue();
+    console.log(tmp);
+    this.enqueue(tmp);
+    count++;
+  }
+}
 
 Queue.prototype.size = function(){
   if (!this.head){
@@ -71,6 +83,7 @@ Queue.prototype.isPalindrome = function(){
   var stack = new Stack();
   var mid = Math.floor(this.length/2);
 
+  console.log("mid is", mid);
   for (var i = 0; i < mid; i++){
     var tmp = this.dequeue();
     stack.push(tmp);
@@ -89,7 +102,7 @@ Queue.prototype.isPalindrome = function(){
     }
     this.enqueue(tmp);
   }
-  console.log(this);
+  // console.log(this);
   if (pal){
     return true;
   }
@@ -97,33 +110,9 @@ Queue.prototype.isPalindrome = function(){
 }
 
 
-
-function Stack(){
-  this.stack = [];
-  this.length = 0;
-}
-
-Stack.prototype.push = function(val){
-  if (!val){
-    return this.stack;
-  }
-  this.stack.push(val);
-  this.length += 1;
-  return this;
-}
-
-Stack.prototype.pop = function(){
-  if (this.stack.length < 1){
-    return null;
-  }
-  var top_val = this.stack.pop();
-  this.length -= 1;
-  // console.log(top_val);
-  return this;
-}
-
 var queue = new Queue();
-console.log(queue.enqueue("t").enqueue("a").enqueue("c").dequeue().dequeue().dequeue());
+queue.enqueue("t").enqueue("a").enqueue("c");
+console.log(queue.isPalindrome());
 // console.log(queue.isPalindrome());
 // console.log(queue.isPalindrome());
 // console.log(queue.size());
