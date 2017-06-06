@@ -46,9 +46,24 @@ Stack.prototype.max = function(){
   return max;
 }
 
+Stack.prototype.reverse = function(){
+  if (this.stack.length < 2){
+    return this.stack;
+  }
+  var new_stack = [];
+  var count = 0;
+  while (count < this.stack.length){
+    new_stack.push(this.stack.pop());
+  }
+  return new_stack;
+}
+
+
+
 stack = new Stack();
-stack.push(4).push(-1).push(3).push(2);
-console.log(stack.max());
+console.log(stack.push(4).push(-1).push(3).push(2));
+// console.log(stack.reverse());
+// console.log(stack.max());
 // stack.print();
 // console.log(stack.pop());
 // console.log(pop(stack));
