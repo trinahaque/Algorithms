@@ -30,6 +30,9 @@ Queue.prototype.deque = function(){
   var tmp = this.head;
   this.head = this.head.next;
   this.length -= 1;
+  if (this.length == 0){
+    this.tail = null;
+  }
   return tmp;
 }
 
@@ -48,10 +51,17 @@ Queue.prototype.print = function(){
   return this;
 }
 
+Queue.prototype.arrayImplementation = function(arr){
+  for (var i = 0; i < arr.length; i++){
+    this.enque(arr[i]);
+  }
+  return this;
+}
+
 
 var q = new Queue();
-q.enque(3).enque(2).enque(1);
-console.log(q.print());
+// q.enque(3).enque(2).enque(1);
+console.log(q.arrayImplementation([1,2,3,4]));
 // console.log(q.deque());
 // console.log(q.deque());
 // console.log(q.deque());
