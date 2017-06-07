@@ -58,10 +58,25 @@ Queue.prototype.arrayImplementation = function(arr){
   return this;
 }
 
+function stackTwoQueues(Q1, Q2){
+  var stack = [];
+  while (Q1.head){
+    stack.push(Q1.deque().val);
+  }
+  while (Q2.head){
+    stack.push(Q2.deque().val);
+  }
+  return stack;
+}
 
-var q = new Queue();
-// q.enque(3).enque(2).enque(1);
-console.log(q.arrayImplementation([1,2,3,4]));
+
+var q1 = new Queue();
+q1.enque(3).enque(2).enque(1);
+var q2 = new Queue();
+q2.enque(5).enque(6).enque(7);
+
+console.log(stackTwoQueues(q1, q2));
+// console.log(q.arrayImplementation([1,2,3,4]));
 // console.log(q.deque());
 // console.log(q.deque());
 // console.log(q.deque());
