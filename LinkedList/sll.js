@@ -26,6 +26,40 @@ SLL.prototype.add = function(val){
   return this;
 }
 
+SLL.prototype.removeVal = function(val){
+  if (!this.head){
+    return null;
+  }
+  if (this.head.val == val){
+    if (this.head == this.tail){
+      this.tail = null;
+    }
+    this.head = this.head.next;
+    this.length --;
+    return this;
+  }
+  var prev = this.head;
+  var current = this.head.next;
+  var next = this.head.next.next;
+
+  while (next) {
+    if (current.val == val){
+      prev.next = next;
+      this.length --;
+      return this;
+    }
+    prev = current;
+    current = next;
+    next = current.next;
+  }
+  if (current.val == val){
+    prev.next = null;
+    this.tail = prev;
+    this.length --;
+  }
+  return this;
+}
+
 SLL.prototype.add_front = function(val){
   var new_node = new SLNode(val);
   if (!this.head){
@@ -491,7 +525,9 @@ SLNode.prototype.printReverseRecursion = function(){
   console.log(this.val);
 }
 
-// var sll = new SLL();
+var sll = new SLL();
+sll.add(1).add(2).add(3);
+console.log(sll.removeVal(2));
 // sll.add(1).add(2).add(3).add(4);
 // console.log(sll.printReverseRecursion());
 // sll.printRecursion();
