@@ -83,7 +83,7 @@ HashMap.prototype.remove = function(key){
   while (current){
     if (current.val[0] == key){
       var tmp = current.val;
-      this.table[index].remove(current.val);
+      this.table[index].removeVal(current.val);
       return tmp;
     }
     current = current.next;
@@ -92,4 +92,5 @@ HashMap.prototype.remove = function(key){
 }
 
 var HM = new HashMap(5);
-console.log(HM.add("key", 7));
+HM.add("key", 7).add("hell", 8);
+console.log(HM.remove("hell"));
