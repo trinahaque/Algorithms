@@ -50,5 +50,25 @@ HashMap.prototype.add = function(key, val){
   return this;
 }
 
+
+HashMap.prototype.findKey = function(key){
+  var hash = key.hashCode();
+  var index = mod(hash, this.capacity);
+
+  if (!this.table[index]){
+    return null;
+  }
+  else{
+    var current = this.table[index].head;
+    while (current){
+      if (current.val[0] == key){
+        return current.val[1];
+      }
+      current = current.next;
+    }
+  }
+  return null;
+}
+
 var HM = new HashMap(5);
 console.log(HM.add("key", 7));
