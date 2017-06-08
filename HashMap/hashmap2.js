@@ -37,7 +37,9 @@ HashMap.prototype.add = function(key, val){
   else{
     var current = this.table[index].head;
     while (current.next){
-      if (current.val[0] == key && current.val[1] == val){
+      if (current.val[0] == key){
+        // if it is the same key, the new value overrides the old one
+        current.val[1] = val;
         return this;
       }
       current = current.next;
@@ -66,6 +68,25 @@ HashMap.prototype.findKey = function(key){
       }
       current = current.next;
     }
+  }
+  return null;
+}
+
+
+HashMap.prototype.remove = function(key){
+  var hash = key.hashCode();
+  var index = mod(hash, this.capacity);
+  if (!this.table[index]){
+    return null;
+  }
+  var current = this.table[index].head;
+  while (current){
+    if (current.val[0] == key){
+      var tmp = current.val;
+      this.table[index].remove(current.val);
+      return tmp;
+    }
+    current = current.next;
   }
   return null;
 }
