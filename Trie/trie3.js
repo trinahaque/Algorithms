@@ -1,8 +1,8 @@
-function Trie_Tree(){
-  this.root = new Trie_Node("", false);
+function Trie(){
+  this.root = new TrieNode("", false);
 }
 
-function Trie_Node(val, isWord){
+function TrieNode(val, isWord){
   this.val = val;
   this.isWord = isWord;
   this.kids = [];

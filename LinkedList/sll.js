@@ -525,9 +525,9 @@ SLNode.prototype.printReverseRecursion = function(){
   console.log(this.val);
 }
 
-var sll = new SLL();
-sll.add(1).add(2).add(3);
-console.log(sll.removeVal(2));
+// var sll = new SLL();
+// sll.add(1).add(2).add(3);
+// console.log(sll.removeVal(2));
 // sll.add(1).add(2).add(3).add(4);
 // console.log(sll.printReverseRecursion());
 // sll.printRecursion();
