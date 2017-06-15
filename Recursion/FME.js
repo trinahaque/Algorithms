@@ -1,10 +1,17 @@
-// problems
-
 // Reverse an array using recursion
 
-function reverseArr(arr){
-  if (arr.length == 0){
-    return;
+function reverseArr(arr, start, end){
+  if (!start){
+    start = 0;
+    end = arr.length - 1;
+  }
+  if (start < end){
+    var tmp = arr[start];
+    arr[start] = arr[end];
+    arr[end] = tmp;
+    start++;
+    end--;
+    reverseArr(arr, start, end);
   }
   return arr;
 }
@@ -22,4 +29,6 @@ function arrMultiplier(arr, num){
   return arr;
 }
 
-console.log(arrMultiplier([1,2,3,4], 3));
+
+console.log(reverseArr([1,2,3,4,5]));
+// console.log(arrMultiplier([1,2,3,4], 3));
