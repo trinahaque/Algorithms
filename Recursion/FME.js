@@ -1,5 +1,33 @@
 // Reverse an array using recursion
 
+
+function revArr(arr, new_arr){
+  if (!new_arr){
+    new_arr = [];
+  }
+  if (arr.length == 0){
+    return;
+  }
+  new_arr.push(arr.pop());
+  revArr(arr, new_arr);
+  return new_arr;
+}
+
+
+function revArrIf(arr, new_arr){
+  if (!new_arr){
+    new_arr = [];
+  }
+  if (arr.length > 0){
+    new_arr.push(arr.pop());
+    revArrIf(arr, new_arr);
+  }
+  return new_arr;
+}
+
+
+console.log(revArrIf([1,2,3,4,5]));
+
 function reverseArr(arr, start, end){
   if (!start){
     start = 0;
@@ -30,5 +58,5 @@ function arrMultiplier(arr, num){
 }
 
 
-console.log(reverseArr([1,2,3,4,5]));
+// console.log(reverseArr([1,2,3,4,5]));
 // console.log(arrMultiplier([1,2,3,4], 3));
