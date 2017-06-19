@@ -23,32 +23,26 @@ function mod(input, div){
   return (input % div + div) % div;
 }
 
+
 HashMap.prototype.add = function(key, val){
   var hash = key.hashCode();
   var index = mod(hash, this.capacity);
-
   if (!this.table[index]){
-    var sll = new SLL();
-    sll.add([key, val]);
-    this.table[index] = sll;
+    this.table[index] = new SLL();
+    this.table[index].add([key, val]);
     this.numkeys++;
     return this;
   }
-  else{
-    var current = this.table[index].head;
-    while (current.next){
-      if (current.val[0] == key){
-        // if it is the same key, the new value overrides the old one
-        current.val[1] = val;
-        return this;
-      }
-      current = current.next;
+  var current = this.table[index].head;
+  while (current){
+    if (current.val[0] == key){
+      current.val[1] = val;
+      return this;
     }
-    var node = new SLNode([key, val]);
-    current.next = node;
-    this.table[index].tail = node;
-    his.numkeys++;
+    current = current.next;
   }
+  this.table[index].add([key, val]);
+  this.numkeys++;
   return this;
 }
 
@@ -92,5 +86,6 @@ HashMap.prototype.remove = function(key){
 }
 
 var HM = new HashMap(5);
-HM.add("key", 7).add("hell", 8);
-console.log(HM.remove("hell"));
+console.log(HM.add("key", 7).add("hell", 8).add("may", 17).add("key", 17).add("ken", 12));
+// console.log(HM.findKey("keys"));
+// console.log(HM.remove("hell"));
