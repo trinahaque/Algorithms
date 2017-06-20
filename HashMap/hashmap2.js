@@ -70,15 +70,21 @@ HashMap.prototype.findKey = function(key){
 HashMap.prototype.remove = function(key){
   var hash = key.hashCode();
   var index = mod(hash, this.capacity);
+
   if (this.table[index]){
     var current = this.table[index].head;
+
     while (current){
       if (current.val[0] == key){
         var tmp = current.val;
         this.table[index].removeVal(current.val);
+
+        // if the sll is empty after removing the value,
+        // set the table index to undefined
         if (this.table[index].length < 1){
           this.table[index] = undefined;
         }
+
         return tmp;
       }
       current = current.next;
@@ -103,13 +109,16 @@ HashMap.prototype.addIndex = function(node, index){
     return this;
   }
   var current = this.table[index].head;
+
   while (current){
     if (current.val[0] == node.val[0]){
+      // if the key already exists, override the value
       current.val[1] = val;
       return this;
     }
     current = current.next;
   }
+  // add the value to sll if the key does not exist
   this.table[index].add(node.val);
   return this;
 }
@@ -119,9 +128,12 @@ HashMap.prototype.grow = function(){
   for (var i = 0; i < this.table.length; i++){
     if (this.table[i]){
       var current = this.table[i].head;
+
       while (current && this.table[i].length > 0){
         var index = findIndex(current.val[0], this.capacity * 1.50);
         if (index !== i){
+          // if the key in the sll is not in the right index
+          // remove the key, and add it to the new index
           this.remove(current.val[0]);
           this.addIndex(current, index);
         }
@@ -131,6 +143,22 @@ HashMap.prototype.grow = function(){
   }
   return this;
 }
+
+HashMap.prototype.addHM2 = function(HM2){
+  for (var i = 0; i < HM2.table.length; i++){
+    if (HM2.table[i]){
+      var current = HM2.table[i].head;
+      while (current){
+        // it just adds the value of the node to the previous hashmap
+        this.add(current.val[0], current.val[1]);
+        current = current.next;
+      }
+    }
+  }
+  return this;
+}
+
+
 
 HashMap.prototype.print = function(){
   for (var i = 0; i < this.table.length; i++){
@@ -149,8 +177,11 @@ HashMap.prototype.print = function(){
 }
 
 
-var HM = new HashMap(5);
-HM.add("key", 7).add("hell", 8).add("may", 17).add("key", 17).add("ken", 12).add("barbie", 3).add("amy", 10);
-HM.grow().print();
+var HM = new HashMap(6);
+var HM2 = new HashMap(4);
+HM.add("key", 7).add("hell", 8).add("may", 17).add("key", 17).add("ken", 12).add("barbie", 3).add("amy", 10).add("sam", 2.5);
+HM2.add("eli", 17).add("manny", 19);
+HM.addHM2(HM2).print();
+// HM.grow().print();
 // console.log(HM.findKey("keys"));
 // console.log(HM.remove("hell"));
