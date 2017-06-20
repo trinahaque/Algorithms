@@ -159,6 +159,32 @@ HashMap.prototype.addHM2 = function(HM2){
 }
 
 
+HashMap.prototype.selectKeys = function(arr){
+  for (var i = 0; i < this.table.length; i++){
+    // goes through every index in the current table of the hashmap
+    if (this.table[i]){
+      var current = this.table[i].head;
+      while (current){
+        // goes through every node in the sll
+        var found = false;
+        for (var j = 0; j < arr.length; j++){
+          // goes through all the keys in the given array
+          if (current.val[0] == arr[j]){
+            found = true;
+            break;
+          }
+        }
+        if (!found){
+          // if the current node does not match any of the key from the array, remove it
+          this.remove(current.val[0]);
+        }
+        current = current.next;
+      }
+    }
+  }
+  return this;
+}
+
 
 HashMap.prototype.print = function(){
   for (var i = 0; i < this.table.length; i++){
@@ -179,9 +205,10 @@ HashMap.prototype.print = function(){
 
 var HM = new HashMap(6);
 var HM2 = new HashMap(4);
-HM.add("key", 7).add("hell", 8).add("may", 17).add("key", 17).add("ken", 12).add("barbie", 3).add("amy", 10).add("sam", 2.5);
-HM2.add("eli", 17).add("manny", 19);
-HM.addHM2(HM2).print();
+// HM.add("key", 7).add("hell", 8).add("may", 17).add("key", 17).add("ken", 12).add("barbie", 3).add("amy", 10).add("sam", 2.5);
+HM2.add("eli", 17).add("manny", 19).add("hell", 7).add('may', 21);
+HM2.selectKeys(["may", "eli", "manny"]).print();
+// HM.addHM2(HM2).print();
 // HM.grow().print();
 // console.log(HM.findKey("keys"));
 // console.log(HM.remove("hell"));
