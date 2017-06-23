@@ -186,8 +186,10 @@ HashMap.prototype.selectKeys = function(arr){
 }
 
 
+// load factor determines how full the hashmap can get before needing rehasing
+// If the initial capacity is greater than the maximum number of entries divided by the load factor, no rehash operations will ever occur.
 HashMap.prototype.LoadFactor = function(){
-  if (this.numkeys > .70 * this.capacity){
+  if (this.numkeys > .75 * this.capacity){
     return true;
   }
   else{
