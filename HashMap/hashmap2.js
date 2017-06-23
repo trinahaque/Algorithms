@@ -186,6 +186,16 @@ HashMap.prototype.selectKeys = function(arr){
 }
 
 
+HashMap.prototype.LoadFactor = function(){
+  if (this.numkeys > .70 * this.capacity){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+
 HashMap.prototype.print = function(){
   for (var i = 0; i < this.table.length; i++){
     if (this.table[i]){
@@ -203,11 +213,12 @@ HashMap.prototype.print = function(){
 }
 
 
-var HM = new HashMap(6);
-var HM2 = new HashMap(4);
+// var HM = new HashMap(6);
+var HM2 = new HashMap(12);
 // HM.add("key", 7).add("hell", 8).add("may", 17).add("key", 17).add("ken", 12).add("barbie", 3).add("amy", 10).add("sam", 2.5);
 HM2.add("eli", 17).add("manny", 19).add("hell", 7).add('may', 21);
-HM2.selectKeys(["may", "eli", "manny"]).print();
+console.log(HM2.LoadFactor());
+// HM2.selectKeys(["may", "eli", "manny"]).print();
 // HM.addHM2(HM2).print();
 // HM.grow().print();
 // console.log(HM.findKey("keys"));
