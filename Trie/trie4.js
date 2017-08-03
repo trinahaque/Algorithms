@@ -14,7 +14,14 @@ Trie.prototype.insert = function(str){
     // Joined returns true
     // Join returns true
     // Join returns false since it's added already
-    return this.root.insert(str);
+    if (this.root.kids.length < 1){
+        // if trie is empty, just add the word. No need to check in kids array
+        return this.root.add(str);
+    }
+    else{
+        // otherwise, follow all the logics
+        return this.root.insert(str);
+    }
 }
 
 

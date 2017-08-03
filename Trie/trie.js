@@ -1,3 +1,5 @@
+// original code written after instruction
+
 function Trie_Tree(){
   this.root = new Trie_Node("", false);
 }
